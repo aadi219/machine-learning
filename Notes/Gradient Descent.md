@@ -10,14 +10,10 @@ Gradient descent may converge at *different local minima* depending on the initi
 The values of the parameters are changed as follows:
 $$\theta_i:=\theta_i - \alpha\cdot\frac{\partial{cost(\theta_i)}}{\partial {\theta_i}}$$
 *The derivative of a function defines the direction of steepest **ascent***. *Therefore the derivative is subtracted in order to move in the direction of descent.*
-$$
-\frac{\partial cost(\theta_i)}{\partial theta_i}= \frac{\partial}{\partial \theta_i}(h(x)-y)^2 = (h(x) - y) \cdot x_i
-$$
+$$\frac{\partial cost(\theta_i)}{\partial theta_i}= \frac{\partial}{\partial \theta_i}(h(x)-y)^2 = (h(x) - y) \cdot x_i$$
 	for one training example
 When taking all examples into account, the formula becomes
-$$
-\theta_i := \theta_i - \alpha\cdot \sum_{j=0}^{m}(h(x_j) - y_j) \cdot x_{ij}
-$$
+$$\theta_i := \theta_i - \alpha\cdot \sum_{j=0}^{m}(h(x_j) - y_j) \cdot x_{ij}$$
 
 ### Batch Gradient Descent
 Refers to using the **entire training set** in **each iteration** of the learning process.
