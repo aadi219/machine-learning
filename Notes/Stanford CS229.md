@@ -6,9 +6,7 @@ Lecture notes by Aadi Badola
 ## Linear Regression
 Involves fitting a line (plane, or hyperplane) to your data to make predictions on a **continuous** variable $y$ based on some input features $x_i$.
 The output of the learning algorithm is a *hypothesis* $h$ represented as a function of the features.
-$$
-y=h(x)=\sum_{i=0}^{n}{\theta_i x_i}=\Theta^Tx
-$$
+$$y=h(x)=\sum_{i=0}^{n}{\theta_i x_i}=\Theta^Tx$$
 where $x_0=1$ and $X$ is a feature matrix of size $n$ and $\Theta$ is a weight matrix of size $n$. An extra constant $x_0$ is added to serve as an *intercept/bias* for the hyperplane, therefore if the `num_features=n` then size of $X$ and $\Theta$ is `n+1`.
 The parameters of Linear Regression are the $\theta$ values.
 The algorithm works to choose the values of the parameters $\theta$ such that $h(x)\approx y$ for the training examples. That is, minimizing the distances between the predicted and actual values.
@@ -42,9 +40,7 @@ For discrete classification problems (especially binary classification), it does
 One of the most commonly used classification algorithms.
 ### Algorithm
 The algorithm works to output a probability value of the target $y$ given some input features $x$, parameterized by $\theta$. That is,
-$$
-p(y\ |\ x\ ;\theta ) = h_\theta(x)
-$$
+$$p(y\ |\ x\ ;\theta ) = h_\theta(x)$$
 For a binary classification problem, the algorithm is designed to fit parameters $\Theta$ to input $x$ such that it outputs values between 0 and 1, that is $h_\theta(x) \in [0,1]$.
 	and since $y$ can only take on the values $\{0,1\}$, the formula 
 	$p(y\ |\ x\ ;\theta) = h_\theta(x)^y \times (1-h_\theta(y))^{1-y}$
@@ -52,10 +48,8 @@ For a binary classification problem, the algorithm is designed to fit parameters
 
 
 The algorithm is driven by the definition of $h_\theta(x)$ 
-$$
-= g(\Theta^Tx) = g(z)
-= \frac{1}{1+e^{-z}}
-$$
+$$= g(\Theta^Tx) = g(z)
+= \frac{1}{1+e^{-z}}$$
 This function is commonly known as the "***sigmoid***" or the "***logistic***" function, and outputs values between 0 and 1.
 
 *Why the sigmoid function?*
@@ -65,36 +59,18 @@ The log likelihood function is a concave function therefore the *only maximum* i
 
 ## Simple Perceptron
 Typically uses the *binary-step* function
-$$
-\begin{equation}
-g(x)=
-	\begin{cases}
-	1; z\geq0 \\
-	0; x\lt 0
-	\end{cases}
-\end{equation}
-$$
+
 Parameters are updated at each iteration as
-$$
-\theta_j:=\theta_j + \alpha(y_{i}-h_\theta(x_i))x_{ij}
-$$
+$$\theta_j:=\theta_j + \alpha(y_{i}-h_\theta(x_i))x_{ij}$$
 where $x_i$ is the *set of features* for the $i^{th}$ training example and $x_{ij}$ is the the specific feature at index $j$ for which the corresponding parameter is $\theta_j$
 In this case, the error values $(y_i-h_\theta(x_i))$ would take the values $0$ if the model guesses correctly or $\pm1$ on an incorrect guess of 0 or 1.
 This algorithm outputs a line (*decision boundary*) of the equation $\Theta^Tx=b$ and can classify points based on which side of the line they fall on. Points above the line would satisfy $\Theta^Tx\gt b$ and points below it would satisfy $\Theta^Tx\lt b$ .
 
 This simple perceptron algorithm is fairly limited when there exists a problem which cannot be properly separated by a linear boundary. (XOR problem)
 ## Bayes Rule
-$$
-\begin{equation}
-p(y_i|x)= \frac{p(x|y_i)\ p(y_i)}{p(x)}
-\end{equation}
-$$
+$$p(y_i|x)= \frac{p(x|y_i)\ p(y_i)}{p(x)}$$
 and
-$$
-\begin{equation}
-p(x)=\sum_{i=0}^{n}{p(x|y_i)\ p(y_i)}
-\end{equation}
-$$
+$$p(x)=\sum_{i=0}^{n}{p(x|y_i)\ p(y_i)}$$
 where
 $p(A|B)$ is the probability of $A$ given that $B$ has occurred.
 ### Discriminative vs Generative Learning Algorithms
@@ -108,9 +84,9 @@ Suppose features $x$ are continues values,
 Assume $p(x|y)$ is a *Gaussian* (normal) distribution.
 GDA uses $\mu_0$, $\mu_1$, $\phi$,  and $\Sigma$ as its parameters, where $\mu_i$ is the mean of probability distribution and $\Sigma$ is the covariance matrix and $p(y)=\phi^y \cdot (1-\phi)^{1-y}$.
 In generative learning algorithms, the cost function which is maximized is the
-	*likelihood of $P(x_i,y_i)$ given some values for the parameters mentioned above*
+	*likelihood of* $P(x_i,y_i)$ *given some values for the parameters mentioned above*
 as opposed to discriminative algorithms where the function being maximized is
-	*the likelihood of $P(y_i | x_i)$ for some parameter $\theta$ around which the model regresses*.
+	*the likelihood of* $P(y_i | x_i)$ *for some parameter $\theta$ around which the model regresses*.
 
 In Generative Algorithms like GDA, Gaussians are fit over examples which define the likelihood of classifying a new point. 
 <img src="img/GDA_fit.png">
@@ -125,7 +101,6 @@ Involves literally just applying bayes rule after evaluating the conditional and
 For class labels $y_0, y_1...y_n$ and discrete features $x_0, x_1...x_m$, evaluate the conditional probabilities for all combinations of $p(x_i | y_j)$ and the prior probabilities $p(y_j)$.
 Then to make predictions for a vector $\set{x_{i1},x_{i2}, x_{i3}}$:
 compute
-$$
-p(y_j | x_{i1}\ x_{i2}\ x_{i3}) = p(x_{i1}|y_j) \times p(x_{i2}|y_j) \times p(x_{i3}|y_j)
+$$p(y_j | x_{i1}\ x_{i2}\ x_{i3}) = p(x_{i1}|y_j) \times p(x_{i2}|y_j) \times p(x_{i3}|y_j)
  \times p(y_j)$$
  for all labels in $Y$ and compare the resultant probabilities (*scores*).
