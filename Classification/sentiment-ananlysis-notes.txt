@@ -1,0 +1,66 @@
+with filtering (freq >= 2):
+MNB - 		precision    recall  f1-score   support
+
+          -1       0.80      0.90      0.85      1781
+           0       0.66      0.47      0.55       680
+           1       0.72      0.70      0.71       467
+
+    accuracy                           0.77      2928
+   macro avg       0.73      0.69      0.70      2928
+weighted avg       0.76      0.77      0.76      2928
+
+CNB - 		precision    recall  f1-score   support
+
+          -1       0.85      0.86      0.85      1781
+           0       0.64      0.53      0.58       680
+           1       0.63      0.77      0.69       467
+
+    accuracy                           0.77      2928
+   macro avg       0.71      0.72      0.71      2928
+weighted avg       0.77      0.77      0.76      2928
+
+without filtering:
+MNB - 		precision    recall  f1-score   support
+
+          -1       0.77      0.93      0.84      1781
+           0       0.71      0.42      0.53       680
+           1       0.76      0.60      0.67       467
+
+    accuracy                           0.76      2928
+   macro avg       0.75      0.65      0.68      2928
+weighted avg       0.75      0.76      0.74      2928
+
+
+CNB -			precision    recall  f1-score   support
+
+          -1       0.83      0.89      0.86      1781
+           0       0.67      0.48      0.56       680
+           1       0.65      0.75      0.70       467
+
+    accuracy                           0.77      2928
+   macro avg       0.72      0.71      0.71      2928
+weighted avg       0.77      0.77      0.76      2928
+
+
+with filtering:
+Logistic Regression ("l2", "newton-sg")
+			precision    recall  f1-score   support
+
+          -1       0.84      0.89      0.86      1781
+           0       0.66      0.58      0.62       680
+           1       0.71      0.68      0.70       467
+
+    accuracy                           0.78      2928
+   macro avg       0.74      0.71      0.72      2928
+weighted avg       0.78      0.78      0.78      2928
+
+solvers "newton-sg" and "sag" result in the same output but "newton-sg" converges much
+faster ~7s vs ~40s
+
+Logistic Regression ("l1", "saga") takes way too long to converge
+
+increasing dimensionality for LR had no effect on the results and evaluations but
+increased the training time by 10x ~2s vs ~20s
+
+balancing class weights on this dataset decreased precision by about 10% and only really
+benefits the recall of neutral cases, therefore not necessary.
