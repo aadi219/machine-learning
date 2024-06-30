@@ -96,7 +96,7 @@ It involves training a *single* model and then applying it with varying values o
 The method also involves calculating the *Area* under the plotted curve.
 
 **Interpreting the ROC Graph**
-![[img/Pasted image 20240610170827.png]]
+<img src="img/Pasted image 20240610170827.png">
 - The top right corner of the graph, with **high sensitivity** and **low specificity** (as (1 - spec) increases with decrease in spec). **A Low specificity means high amount of false positives**.
 - The bottom left corner is very specific and very insensitive. That means little to no samples are being declared positive - **High amount of false negatives**.
 The knee of this graph would be a good place to choose a p-value for the model.
